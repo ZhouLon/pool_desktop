@@ -3,57 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Merchant</title>
+    <title>Get and Delete Merchant</title>
 </head>
 <body>
-    <h1>Update Merchant</h1>
-    <form id="update-merchant-form">
-        <label for="merchant-id">Merchant ID:</label>
+    <h1>获取商家</h1>
+    <form id="get-merchant-form">
+        <label for="merchant-id">商家ID：</label>
         <input type="number" id="merchant-id" name="merchant-id" required><br><br>
-
-        <label for="name">Merchant Name:</label>
-        <input type="text" id="name" name="name"><br><br>
-
-        <label for="address">Address:</label>
-        <input type="text" id="address" name="address"><br><br>
-
-        <label for="phone">Phone:</label>
-        <input type="text" id="phone" name="phone"><br><br>
-
-        <label for="advertisement">Advertisement:</label>
-        <textarea id="advertisement" name="advertisement"></textarea><br><br>
-
-        <input type="submit" value="Update">
+        <input type="submit" value="Get Merchant">
     </form>
 
-    <p id="response"></p>
+    <p id="merchant-info"></p>
+
+    <h1>删除商家</h1>
+    <form id="delete-merchant-form">
+        <label for="delete-merchant-id">商家ID：</label>
+        <input type="number" id="delete-merchant-id" name="delete-merchant-id" required><br><br>
+        <input type="submit" value="Delete Merchant">
+    </form>
+
+    <p id="delete-info"></p>
 
     <script>
-        document.getElementById('update-merchant-form').addEventListener('submit', function (event) {
+        // 获取商家信息
+        document.getElementById('get-merchant-form').addEventListener('submit', function (event) {
             event.preventDefault();
             const merchantId = document.getElementById('merchant-id').value;
-            const formData = new FormData(this);
 
-            const data = {
-                name: formData.get('name'),
-                address: formData.get('address'),
-                phone: formData.get('phone'),
-                advertisement: formData.get('advertisement')
-            };
+            fetch(`/merchant/${merchantId}`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('merchant-info').innerText = JSON.stringify(data);
+            })
+            .catch(error => {
+                document.getElementById('merchant-info').innerText = "Error: " + error;
+            });
+        });
 
-            fetch(`/merchant/${merchantId}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
+        // 删除商家信息
+        document.getElementById('delete-merchant-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const deleteMerchantId = document.getElementById('delete-merchant-id').value;
+
+            fetch(`/merchant/${deleteMerchantId}`, {
+                method: 'DELETE'
             })
             .then(response => response.json())
             .then(data => {
-                document.getElementById('response').innerText = JSON.stringify(data);
+                document.getElementById('delete-info').innerText = JSON.stringify(data);
             })
             .catch(error => {
-                document.getElementById('response').innerText = "Error: " + error;
+                document.getElementById('delete-info').innerText = "Error: " + error;
             });
         });
     </script>

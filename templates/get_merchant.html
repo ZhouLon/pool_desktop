@@ -6,12 +6,21 @@
     <title>Get Merchant</title>
 </head>
 <body>
-    <h1>Get Merchant</h1>
+    <h1>获取商家</h1>
     <form id="get-merchant-form">
-        <label for="merchant-id">Merchant ID:</label>
-        <input type="number" id="merchant-id" name="merchant-id" required><br><br>
+        <label for="merchant-id">商家ID（可选）：</label>
+        <input type="number" id="merchant-id" name="merchant-id"><br><br>
 
-        <input type="submit" value="Get Merchant">
+        <label for="merchant-name">商家名字（可选）：</label>
+        <input type="text" id="merchant-name" name="merchant-name"><br><br>
+
+        <label for="merchant-address">商家地址（可选）：</label>
+        <input type="text" id="merchant-address" name="merchant-address"><br><br>
+
+        <label for="merchant-phone">商家电话（可选）：</label>
+        <input type="text" id="merchant-phone" name="merchant-phone"><br><br>
+
+        <input type="submit" value="查询商家">
     </form>
 
     <p id="merchant-info"></p>
@@ -20,8 +29,19 @@
         document.getElementById('get-merchant-form').addEventListener('submit', function (event) {
             event.preventDefault();
             const merchantId = document.getElementById('merchant-id').value;
+            const merchantName = document.getElementById('merchant-name').value;
+            const merchantAddress = document.getElementById('merchant-address').value;
+            const merchantPhone = document.getElementById('merchant-phone').value;
 
-            fetch(`/merchant/${merchantId}`)
+            // 构建查询参数
+            const params = new URLSearchParams();
+            if (merchantId) params.append('id', merchantId);
+            if (merchantName) params.append('name', merchantName);
+            if (merchantAddress) params.append('address', merchantAddress);
+            if (merchantPhone) params.append('phone', merchantPhone);
+
+            // 发送请求到后台
+            fetch(`/merchant/search?${params.toString()}`)
             .then(response => response.json())
             .then(data => {
                 document.getElementById('merchant-info').innerText = JSON.stringify(data);

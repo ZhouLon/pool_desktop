@@ -12,3 +12,12 @@ class Merchant(db.Model):
 
     def __repr__(self):
         return f"<Merchant {self.name}>"
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "address": self.address,
+            "phone": self.phone,
+            "advertisement": self.advertisement
+        }

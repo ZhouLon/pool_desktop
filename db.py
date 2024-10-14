@@ -1,11 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
-from flask import Flask
-import pymysql
 from sqlalchemy import text
 # 初始化数据库实例
 db = SQLAlchemy()
-import mysql.connector
-from mysql.connector import Error
 
 def init_db(app):
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://zhoulong:longzhou@106.52.158.123:3306/poolease'
