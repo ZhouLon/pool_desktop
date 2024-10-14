@@ -4,26 +4,98 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Merchant</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        textarea {
+            resize: vertical;
+            height: 80px;
+        }
+
+        input[type="submit"] {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+
+        p#response {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
 </head>
 <body>
-    <h1>添加商家</h1>
     <form id="merchant-form">
+        <h1>添加商家</h1>
         <label for="name">商家名字：</label>
-        <input type="text" id="name" name="name" required><br><br>
+        <input type="text" id="name" name="name" required>
 
         <label for="address">地址：</label>
-        <input type="text" id="address" name="address" required><br><br>
+        <input type="text" id="address" name="address" required>
 
         <label for="phone">电话：</label>
-        <input type="text" id="phone" name="phone" required><br><br>
+        <input type="text" id="phone" name="phone" required>
 
         <label for="advertisement">广告：</label>
-        <textarea id="advertisement" name="advertisement"></textarea><br><br>
+        <textarea id="advertisement" name="advertisement"></textarea>
 
         <input type="submit" value="Submit">
-    </form>
 
-    <p id="response"></p>
+        <p id="response"></p>
+    </form>
 
     <script>
         document.getElementById('merchant-form').addEventListener('submit', function (event) {

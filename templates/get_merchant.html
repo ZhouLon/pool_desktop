@@ -4,26 +4,110 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Get Merchant</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        input[type="text"],
+        textarea {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        textarea {
+            resize: vertical;
+            height: 80px;
+        }
+        input[type="submit"] {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+
+        p#merchant-info {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
 </head>
 <body>
-    <h1>获取商家</h1>
     <form id="get-merchant-form">
+        <h1>获取商家</h1>
+
         <label for="merchant-id">商家ID（可选）：</label>
-        <input type="number" id="merchant-id" name="merchant-id"><br><br>
+        <input type="number" id="merchant-id" name="merchant-id">
 
         <label for="merchant-name">商家名字（可选）：</label>
-        <input type="text" id="merchant-name" name="merchant-name"><br><br>
+        <input type="text" id="merchant-name" name="merchant-name">
 
         <label for="merchant-address">商家地址（可选）：</label>
-        <input type="text" id="merchant-address" name="merchant-address"><br><br>
+        <input type="text" id="merchant-address" name="merchant-address">
 
         <label for="merchant-phone">商家电话（可选）：</label>
-        <input type="text" id="merchant-phone" name="merchant-phone"><br><br>
+        <input type="text" id="merchant-phone" name="merchant-phone">
 
-        <input type="submit" value="查询商家">
+        <input type="submit" value="Submit">
+
+        <p id="merchant-info"></p>
     </form>
-
-    <p id="merchant-info"></p>
 
     <script>
         document.getElementById('get-merchant-form').addEventListener('submit', function (event) {
