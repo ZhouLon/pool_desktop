@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Merchant</title>
+</head>
+<body>
+    <h1>Get Merchant</h1>
+    <form id="get-merchant-form">
+        <label for="merchant-id">Merchant ID:</label>
+        <input type="number" id="merchant-id" name="merchant-id" required><br><br>
+
+        <input type="submit" value="Get Merchant">
+    </form>
+
+    <p id="merchant-info"></p>
+
+    <script>
+        document.getElementById('get-merchant-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const merchantId = document.getElementById('merchant-id').value;
+
+            fetch(`/merchant/${merchantId}`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('merchant-info').innerText = JSON.stringify(data);
+            })
+            .catch(error => {
+                document.getElementById('merchant-info').innerText = "Error: " + error;
+            });
+        });
+    </script>
+</body>
+</html>
